@@ -1,0 +1,34 @@
+server:
+  port: 8087
+siteconfigs:
+  siteName: "PAYVAL节点服务"
+
+spring:
+  messages:
+    basename: langs/messages #对应着resource下的langs目录，并以messages为前缀的文件作为语言包文件
+    encoding: utf-8
+    cache-duration: 60  # 缓存时间
+  cache:
+    type: simple #simple redis ehcache
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: coinbig
+    password: coinbig@coinbig.com
+    url: jdbc:mysql://192.168.1.33:3306/payvar?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+  jpa:
+    show-sql: true
+  redis:
+    host: 192.168.1.33
+    port: 6379
+    timeout: 5000
+  mail:
+    host: mxcb.coinbig.com
+    username: ENC(ArpBR3b9riPNlhEBEmLUYw==) #ENC(ArpBR3b9riPNlhEBEmLUYw==) ebsite
+    password: ENC(He2E5x0aDghH1H+xS9f8Vw==) #ENC(He2E5x0aDghH1H+xS9f8Vw==) 123456
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: false
+            required: false
