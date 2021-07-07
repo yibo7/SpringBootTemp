@@ -1,5 +1,5 @@
 server:
-  port: 8087
+  port: 8010
 siteconfigs:
   siteName: "模板演示站"
 
@@ -21,14 +21,14 @@ spring:
 #    host: 192.168.1.33
 #    port: 6379
 #    timeout: 5000
-#  mail:
-#    host: mxcb.***.com
-#    username: ENC(ArpBR3b9riPNlhEBEmLUYw==) #ENC(ArpBR3b9riPNlhEBEmLUYw==) ebsite
-#    password: ENC(He2E5x0aDghH1H+xS9f8Vw==) #ENC(He2E5x0aDghH1H+xS9f8Vw==) 123456
-#    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          starttls:
-#            enable: false
-#            required: false
+  mail:
+    host: mxcb.***.com
+    username: ENC(ArpBR3b9riPNlhEBEmLUYw==) #ENC(ArpBR3b9riPNlhEBEmLUYw==) ebsite
+    password: ENC(He2E5x0aDghH1H+xS9f8Vw==) #ENC(He2E5x0aDghH1H+xS9f8Vw==) 123456
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: false
+            required: false
