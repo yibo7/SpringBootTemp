@@ -1,5 +1,6 @@
 package com.ebsite.tempsite.logopt;
 
+import com.ebsite.tempsite.pojo.LogsPojo;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -42,8 +43,8 @@ public class LogOpt implements ILogOpt {
     @Override
     public void addLogToDb(LogOptModel model) {
         switch (model.getLogOptEnum()){
-            case FLOG:
-                // model.getLog() 转换成相应的对象并添加到数据库
+            case LOGS:
+                LogsPojo log = (LogsPojo)model.getLog();// 转换成相应的对象并添加到数据库
                 break;
             case FVALIDATEEMAIL:
                 //邮件信息

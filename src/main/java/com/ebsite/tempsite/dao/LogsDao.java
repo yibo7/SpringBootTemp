@@ -1,11 +1,11 @@
 package com.ebsite.tempsite.dao;
 
 import com.ebsite.tempsite.dao.base.BaseDao;
-import com.ebsite.tempsite.pojo.Logs;
+import com.ebsite.tempsite.pojo.LogsPojo;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LogsDao extends BaseDao<Logs, Integer> {
+public interface LogsDao extends BaseDao<LogsPojo, Integer> {
 
 //    @Query(value = "select * from  menus   where  ParentID=?1 order by orderid asc", nativeQuery = true)
 //     List<Menus> findMenusByParentID(Integer pid);

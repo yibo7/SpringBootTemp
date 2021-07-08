@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/test/")
+@RequestMapping("/api/test/")
 public class Test extends ControllerBase {
     @GetMapping("site")
     public ApiResult<SiteInfoVO> SiteInfo(){

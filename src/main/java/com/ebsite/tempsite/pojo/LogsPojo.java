@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name = "logs")
 @Data
-public class Logs implements BaseModel<Integer> {
+public class LogsPojo implements BaseModel<Integer> {
     private static final long serialVersionUID = -4272233926891165917L;
 
     @Id

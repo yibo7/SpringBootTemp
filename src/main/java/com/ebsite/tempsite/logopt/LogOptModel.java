@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @create 2018-02-13 11:14
  **/
 @Data
-public class LogOptModel implements Serializable {
+public class LogOptModel<T> implements Serializable {
     private static final long serialVersionUID = -6378830550762748469L;
     private Object log;
     private LogOptEnum logOptEnum;
