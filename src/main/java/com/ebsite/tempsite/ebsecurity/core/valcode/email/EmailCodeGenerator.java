@@ -1,0 +1,38 @@
+package com.ebsite.tempsite.ebsecurity.core.valcode.email;
+
+import com.ebsite.tempsite.ebsecurity.core.configs.SecurityConfigs;
+import com.ebsite.tempsite.ebsecurity.core.valcode.ValidateCode;
+import com.ebsite.tempsite.ebsecurity.core.valcode.ValidateCodeGenerator;
+import lombok.Data;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.ServletWebRequest;
+
+/**
+ * 短信验证码生成器,这个比图片验证码生成器简单，所以直接用Compenent，不用在BeanConfig里配置
+ *
+ *
+ */
+@Data
+@Component("emailValidateCodeGenerator")
+public class EmailCodeGenerator implements ValidateCodeGenerator {
+
+    @Autowired
+    private SecurityConfigs securityConfigs;
+
+    /*
+     * (non-Javadoc)
+     *
+     * @see
+     * com.imooc.security.core.validate.code.ValidateCodeGenerator#generate(org.
+     * springframework.web.context.request.ServletWebRequest)
+     */
+    @Override
+    public ValidateCode generate(ServletWebRequest request) {
+        String code = RandomStringUtils.randomNumeric(securityConfigs.getCode().getEmail().getLength());
+        return new ValidateCode(code, securityConfigs.getCode().getEmail().getExpireIn());
+    }
+
+
+}

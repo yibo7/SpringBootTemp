@@ -8,9 +8,7 @@ import org.springframework.stereotype.Component;
 @Component //需要加入这个，否则在引用的地方会有找不到的报错提醒
 @ConfigurationProperties(prefix = "siteconfigs")
 public class SiteSetting {
-    /***
-     * 系统名称
-     */
+    private String urlUserInex;
     private String siteName;
     private String publicKey;
     private String privateKey;
