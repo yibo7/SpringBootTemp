@@ -1,7 +1,10 @@
 # SpringBootTemp
 SpringBoot的项目创建模板
-包括：数据库处理，控制器之api，控制器之web页面模板，过滤器，异常处理，任务调度job，表单处理，日志处理，项目配置，常用工具，vo层，面对切片编程...
-数据库处理基于jpa,
+包括：基于jpa数据库封装处理库，控制器（api规范与页面，模板），过滤器，异常处理，任务调度job，表单处理，
+日志处理，队列处理，自定义项目配置，常用工具，vo与表单，面对切片编程（示例分布式job锁与注入式日志操作）
+拦截器，基于security的权限访问控制(常规权限管理，图片验证码，手机验证码，google验证码，随机验证码，
+访问频率控制，ip限制)
+ 
 ## apihelper
 统一所有api返回格式，建议所有api在返回值里都返回一个ApiResult对你，这是一个泛型类,ApiResultUtils是api的快捷使用工具类
 ## aspect
@@ -152,8 +155,8 @@ SprintBoot的入口程序
 实现了CommandLineRunner，所以在系统启动后会执行这里的run方法，可以在这里处理一些系统初始化时需要处理的业务，比如日志处理
 
 ## ebsecurity ebsecuritycustom
-基于security的权限管理封装库，具体使用教程请查看权限模块的调用说
-代码说明，请查看 基于security的权限封装详解
+基于security的权限管理封装库，
+具体使用教程请查看《权限模块的调用说明》 
 
     ebsecurity： 是基础封装库，主要对外提供了相关实现的接口，以处理常见的权限问题
     ebsecuritycustom:   是对ebsecurity自定义实现
