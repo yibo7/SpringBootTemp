@@ -1,12 +1,14 @@
 package com.ebsite.tempsite.ebsecuritycustom;
 
+import com.ebsite.tempsite.ebsecurity.browser.ILoginSuccessPush;
+import com.ebsite.tempsite.ebsecurity.support.SimpleResponse;
+import com.ebsite.tempsite.queuehandler.QueueToDbEnum;
+import com.ebsite.tempsite.queuehandler.QueueToDbModel;
+import com.ebsite.tempsite.queuehandler.QueueToDbOpt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-import payvar.openapi.ebsecurity.browser.ILoginSuccessPush;
-import payvar.openapi.ebsecurity.support.SimpleResponse;
-import payvar.openapi.queuehandler.QueueToDbOpt;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

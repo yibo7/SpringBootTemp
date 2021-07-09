@@ -10,7 +10,7 @@ import java.util.Date;
  * Flog entity. @author MyEclipse Persistence Tools
  */
 @Entity
-@Table(name = "logs")
+@Table(name = "eb_logs")
 @Data
 public class LogsPojo implements BaseModel<Integer> {
     private static final long serialVersionUID = -4272233926891165917L;
@@ -30,7 +30,7 @@ public class LogsPojo implements BaseModel<Integer> {
     private String ipAddr;
     @Column(columnDefinition = "bigint")
     private long addTimeint;
-    private Integer userId;
+    private long userId;
     private String userName;
     @Override
     public Integer getDataId() {

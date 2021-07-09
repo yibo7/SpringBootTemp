@@ -6,7 +6,15 @@ SpringBoot的项目创建模板
 统一所有api返回格式，建议所有api在返回值里都返回一个ApiResult对你，这是一个泛型类,ApiResultUtils是api的快捷使用工具类
 ## aspect
 切面实现，这里默认有两个实例
-JobsLockAop：实现了所有job的分布式锁，当我们的项目是分布式项目只，我们只允许我们的job每次只有一个事件在运行，可以这样实现
+
+    JobsLockAop：其handleControllerMethod方法演示了，使用切面将所有job的加上分布式锁，
+                 原因是当我们的项目是分布式项目时，我们只允许我们的job每次只有一个事件在运行
+    weblogs:    演示了使用切面实现注入的方式写日志，ControllerLog是一个注入接口，通过他可以在WebLogAspect
+                中拦截触发了这个接口的事件，有点类似下面的拦截器，不过这个可以应该在任何方法上，只要在应用的方法上注入：
+                @ControllerLog(description = "调用测试日志的方法", logstype = LogsTypeEnum.LOGS_SETTING)
+                public ApiResult<String> addLog(){
+                    return  ApiResultUtils.success("请求成功");
+                }
 
 ## configs 
 一些全局性的配置，默认这里有两个配置，一个是多语言配置，一个是ControllerAdvice配置，
@@ -102,19 +110,26 @@ JobsLockAop：实现了所有job的分布式锁，当我们的项目是分布式
 定时任务
 
 ## queuehandler
-基于队列的日志处理，关于各种样的日志，处理起来会比较影响系统性能，所以一般对日志的处理会通过消息队列来异步处理，这里默认采用的是
-redis的消息队列，你也可以采用其他，如果不追究日志处理性能，或者你的应用只有一个日志表，比如logs这个表
-你可以直接调用LogsServiceImpl来写日志，这个是直接与数据库打交道的
-
-
-    LogOpt:   主要是实现ILogOpt三个与日志业务相关的接口
-                addLog(LogOptModel model);     
-                popLog();     
-                addLogToDb(LogOptModel model);
-    LogOptEnum: 日志的类型，即分类可以在这里定义，在业务处理中主要是靠这个来区分，并存储到相应的设备
-    LogOptModel: 通用日志实体，操作日志时都是通过这个类封装后传进来的，并在这里要指定操作日志的类型
-    LogOptToDb: 将日志从消息队列定入到数据库的业务处理，要在系统启动初始后调用此方法
-
+通用队列处理，一些不用实时的，并且频繁的数据库操作可以先写到队列来处理，比如关于各种样的日志，
+处理起来会比较影响系统性能，所以一般对日志的处理会通过消息队列来异步处理，默认使用redis的消息
+队列，如果你没有安装redis那可以直接调用service来定日志了
+ 
+    QueueToDbEnum:  要处理的类型，即分类可以在这里定义，在业务处理中主要是靠这个来区分，并存储到相应的设备
+    QueueToDbModel: 通用数据实体，操作日志时都是通过这个类封装后传进来的，并在这里要指定操作数据的类型
+    QueueToDbOpt:   将数据QueueToDbModel从消息队列取出，并存入到数据库的业务处理，要在系统启动初始后调用这个类的startToDb方法
+                    考虑到的小项目不想使用队列，这个类有个属性，isOpenQueue，是否打开消息队列模式,允许你暂时不使用队列，以后想使用的时候再将其改为true
+                    
+    使用：
+    
+   
+```java
+   @Autowired
+    private QueueToDbOpt logOpt;
+    QueueToDbModel objData = new QueueToDbModel();
+    objData.setQueueToDbEnum(QueueToDbEnum.MainLog);//QueueToDbEnum可以自动定义，自定义后要在QueueToDbOpt的addLogToDb里添加对应的处理业务
+    objData.setLog(你的数据实体);
+    logOpt.addData(objData);
+```
 ## settings
 可以在application.yml里添加配置节点，并通过类的方式来操作
     
@@ -135,3 +150,10 @@ SprintBoot的入口程序
 
 ## StartRun 
 实现了CommandLineRunner，所以在系统启动后会执行这里的run方法，可以在这里处理一些系统初始化时需要处理的业务，比如日志处理
+
+## ebsecurity ebsecuritycustom
+基于security的权限管理封装库，具体使用教程请查看权限模块的调用说
+代码说明，请查看 基于security的权限封装详解
+
+    ebsecurity： 是基础封装库，主要对外提供了相关实现的接口，以处理常见的权限问题
+    ebsecuritycustom:   是对ebsecurity自定义实现

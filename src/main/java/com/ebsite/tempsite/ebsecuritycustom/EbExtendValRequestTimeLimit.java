@@ -1,8 +1,8 @@
 package com.ebsite.tempsite.ebsecuritycustom;
 
+import com.ebsite.tempsite.ebsecurity.core.requesttime.ValidateTimeConfig;
+import com.ebsite.tempsite.ebsecurity.core.requesttime.validatefilter.ExtendValRequestTimeLimit;
 import org.springframework.stereotype.Component;
-import payvar.openapi.ebsecurity.core.requesttime.ValidateTimeConfig;
-import payvar.openapi.ebsecurity.core.requesttime.validatefilter.ExtendValRequestTimeLimit;
 
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;

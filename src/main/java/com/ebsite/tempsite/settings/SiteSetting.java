@@ -13,4 +13,6 @@ public class SiteSetting {
     private String publicKey;
     private String privateKey;
     private String allowIps;
+    private boolean isopenIpLimt;
+    private String sendWarningPhone;
 }

@@ -1,5 +1,11 @@
 package com.ebsite.tempsite.aspect.weblogs;
 
+import com.ebsite.tempsite.ebsecuritycustom.EbUserDetails;
+import com.ebsite.tempsite.pojo.LogsPojo;
+import com.ebsite.tempsite.queuehandler.QueueToDbEnum;
+import com.ebsite.tempsite.queuehandler.QueueToDbModel;
+import com.ebsite.tempsite.queuehandler.QueueToDbOpt;
+import com.ebsite.tempsite.utils.DateUtils;
 import com.ebsite.tempsite.utils.RequestPrams;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
@@ -7,6 +13,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -38,7 +45,8 @@ public class WebLogAspect {
     public void controllerAspect(com.ebsite.tempsite.aspect.weblogs.ControllerLog controllerLog) {
 
     }
-
+    @Autowired
+    private QueueToDbOpt logOpt;
     @Before("controllerAspect(controllerLog)")
     public void doBefore(JoinPoint joinPoint, com.ebsite.tempsite.aspect.weblogs.ControllerLog controllerLog) throws Throwable {
         try {
@@ -50,7 +58,25 @@ public class WebLogAspect {
             String operateurl = request.getRequestURI();
             String strPram = request.getQueryString();
             String operatelog = String.format("%s 来自 ip:%s URL:%s 参数:%s 日志类型:%s", description, operateip, operateurl,strPram,logType);
-            log.info(operatelog);
+
+            LogsPojo logs = new LogsPojo();
+            logs.setAddDate(DateUtils.getTimestamp());
+            logs.setAddTimeint(DateUtils.getTodayStartTime());
+            logs.setDescription(operatelog);
+            logs.setIpAddr(operateip);
+            logs.setLogType(QueueToDbEnum.MainLog.getCode());
+            EbUserDetails user = null;
+            if(SecurityContextHolder.getContext().getAuthentication()!=null) {
+                if (!SecurityContextHolder.getContext().getAuthentication().getName().equals("anonymousUser")) {
+                    Object obj = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                    user = (EbUserDetails) obj;
+                }
+            }
+            if(user!=null){
+                logs.setUserId(user.getUserId());
+                logs.setUserName(user.getUserName());
+            }
+            logOpt.addData(new QueueToDbModel(logs,QueueToDbEnum.MainLog));
 
         } catch (Throwable throwable) {
             throwable.printStackTrace();

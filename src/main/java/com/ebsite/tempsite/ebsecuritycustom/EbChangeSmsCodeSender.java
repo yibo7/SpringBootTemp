@@ -1,10 +1,10 @@
 package com.ebsite.tempsite.ebsecuritycustom;
 
+import com.ebsite.tempsite.ebsecurity.core.valcode.sms.SmsCodeSender;
+import com.ebsite.tempsite.settings.SiteSetting;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import payvar.openapi.ebsecurity.core.valcode.sms.SmsCodeSender;
-import payvar.openapi.settings.SiteSetting;
 
 /**
  * 这个短信发送器将覆盖ebsecurity的短信验证码的默认发送器

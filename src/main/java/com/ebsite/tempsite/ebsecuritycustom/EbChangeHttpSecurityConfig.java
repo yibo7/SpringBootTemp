@@ -1,12 +1,12 @@
 package com.ebsite.tempsite.ebsecuritycustom;
 
+import com.ebsite.tempsite.ebsecurity.core.configs.SecurityConfigs;
+import com.ebsite.tempsite.ebsecurity.core.httpconfig.IHttpSecurityConfig;
+import com.ebsite.tempsite.settings.AppConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Component;
-import payvar.openapi.ebsecurity.core.configs.SecurityConfigs;
-import payvar.openapi.ebsecurity.core.httpconfig.IHttpSecurityConfig;
-import payvar.openapi.settings.AppConstants;
 
 /**
  * 扩展 security 的 HttpSecurity

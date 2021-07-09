@@ -1,6 +1,6 @@
 package com.ebsite.tempsite;
 
-import com.ebsite.tempsite.logopt.LogOptToDb;
+import com.ebsite.tempsite.queuehandler.QueueToDbOpt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 
@@ -16,9 +16,9 @@ public class StartRun implements CommandLineRunner {
      */
     public static Map<String,String> AppArgs ;
     @Autowired
-    private LogOptToDb logOptToDb;
+    private QueueToDbOpt logOpt;
     @Override
     public void run(String... args) throws Exception {
-        logOptToDb.startToDb();
+        logOpt.startToDb();
     }
 }

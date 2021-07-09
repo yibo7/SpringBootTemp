@@ -1,15 +1,15 @@
 package com.ebsite.tempsite.ebsecuritycustom;
 
+import com.ebsite.tempsite.apihelper.ApiResult;
+import com.ebsite.tempsite.apihelper.ApiResultUtils;
+import com.ebsite.tempsite.ebsecurity.core.configs.SecurityConfigs;
+import com.ebsite.tempsite.ebsecurity.core.urlmanager.UrlMatcher;
+import com.ebsite.tempsite.exception.EResultEnum;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
-import payvar.openapi.apihelper.ApiResult;
-import payvar.openapi.apihelper.ApiResultUtils;
-import payvar.openapi.ebsecurity.core.configs.SecurityConfigs;
-import payvar.openapi.ebsecurity.core.urlmanager.UrlMatcher;
-import payvar.openapi.enums.appapi.AppErrorEnum;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -65,7 +65,7 @@ public class EbChangeAccessDeniedHandler implements AccessDeniedHandler {
         // /api/下的所有请求都返回json
         if (UrlMatcher.getInstance().match("/api/**", targetUrl))//
         {
-            ApiResult rz = ApiResultUtils.error(AppErrorEnum.E103);
+            ApiResult rz = ApiResultUtils.error(EResultEnum.NOACCESS);
             ObjectMapper objectMapper = new ObjectMapper();
             String sRZ = objectMapper.writeValueAsString(rz);
             response.setContentType("application/json;charset=UTF-8");

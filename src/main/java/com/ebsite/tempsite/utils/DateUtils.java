@@ -494,7 +494,9 @@ public class DateUtils {
         long todayStartTime = nowTime - (nowTime + TimeZone.getDefault().getRawOffset())% (1000*3600*24);
         return todayStartTime;
     }
-
+    public static Timestamp getTimestamp() {
+        return new Timestamp(new Date().getTime());
+    }
     /**
      * 获取当前时间整点毫秒值
      * @return

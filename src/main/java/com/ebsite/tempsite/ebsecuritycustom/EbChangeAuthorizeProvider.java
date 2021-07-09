@@ -1,11 +1,11 @@
 package com.ebsite.tempsite.ebsecuritycustom;
 
+import com.ebsite.tempsite.ebsecurity.core.configs.SecurityConfigs;
+import com.ebsite.tempsite.ebsecurity.core.urlmanager.AuthorizeConfigProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.stereotype.Component;
-import payvar.openapi.ebsecurity.core.configs.SecurityConfigs;
-import payvar.openapi.ebsecurity.core.urlmanager.AuthorizeConfigProvider;
 
 /**
  *  自定义访问权限配置

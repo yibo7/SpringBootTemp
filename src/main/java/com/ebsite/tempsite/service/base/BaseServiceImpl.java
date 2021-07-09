@@ -1,7 +1,6 @@
 package com.ebsite.tempsite.service.base;
 
 import com.ebsite.tempsite.dao.base.BaseDao;
-import com.ebsite.tempsite.logopt.LogOpt;
 import com.ebsite.tempsite.pojo.BaseModel;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

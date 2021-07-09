@@ -51,18 +51,8 @@ public class EbUserDetails extends User {
     @Getter
     @Setter
     private Integer userStatus;
-    /**
-     * 用户Gid
-     */
-    @Getter
-    @Setter
-    private String userGid;
-    /**
-     * 公司名称
-     */
-    @Getter
-    @Setter
-    private String companyName;
+
+
 
     /**
      * 头像地址
@@ -89,7 +79,7 @@ public class EbUserDetails extends User {
      */
     @Getter
     @Setter
-    private String userAccount;
+    private String userName;
 
 
 

@@ -1,8 +1,8 @@
 package com.ebsite.tempsite.ebsecuritycustom;
 
+import com.ebsite.tempsite.ebsecurity.core.valcode.email.EmailCodeSender;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import payvar.openapi.ebsecurity.core.valcode.email.EmailCodeSender;
 
 
 /**
