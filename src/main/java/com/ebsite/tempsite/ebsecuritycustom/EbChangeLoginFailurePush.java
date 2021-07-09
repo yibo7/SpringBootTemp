@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * 登录成功后触发此类的方法
+ * 登录失败后触发此类的方法
  *
  * @author 蔡齐盛
  * @create 2017-12-08 17:27

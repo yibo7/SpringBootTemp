@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configurers.Expression
 import org.springframework.stereotype.Component;
 
 /**
- *  自定义访问权限配置
+ *  自定义访问权限配置，可以在这里给某些url开放免权
  */
 @Component
 public class EbChangeAuthorizeProvider implements AuthorizeConfigProvider

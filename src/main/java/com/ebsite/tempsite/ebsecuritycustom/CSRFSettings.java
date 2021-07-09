@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Component;
 
 /**
- * 扩展 security 的 HttpSecurity
+ * csrf跨域忽略地址配置
  * @author 蔡齐盛
  * @create 2017-12-08 21:32
  **/
